@@ -4,7 +4,7 @@ Lab 11 — Helper Utilities
 from google.genai import types
 
 
-async def chat_with_agent(agent, runner, user_message: str, session_id=None):
+async def chat_with_agent(agent, runner, user_message: str, session_id=None, user_id="student"):
     """Send a message to the agent and get the response.
 
     Args:
@@ -16,7 +16,6 @@ async def chat_with_agent(agent, runner, user_message: str, session_id=None):
     Returns:
         Tuple of (response_text, session)
     """
-    user_id = "student"
     app_name = runner.app_name
 
     session = None

@@ -6,10 +6,19 @@ import os
 
 def setup_api_key():
     """Load Google API key from environment or prompt."""
-    if "GOOGLE_API_KEY" not in os.environ:
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except ImportError:
+        pass
+
+    if os.environ.get("OPENROUTER_API_KEY"):
+        print("Using OpenRouter provider (Gemini via OpenRouter).")
+    elif "GOOGLE_API_KEY" not in os.environ:
         os.environ["GOOGLE_API_KEY"] = input("Enter Google API Key: ")
+    
     os.environ["GOOGLE_GENAI_USE_VERTEXAI"] = "0"
-    print("API key loaded.")
+    print("API context initialized.")
 
 
 # Allowed banking topics (used by topic_filter)
